@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.System;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Popups;
@@ -26,18 +27,40 @@ namespace FloatConverterUWP
         public MainPage()
         {
             this.InitializeComponent();
+            radioButtonSingle.IsChecked = true;
         }
 
         // ラジオボタンクリック（サイズ変更）
-        // XAMLで初期値を設定すると起動直後にここに来てラベルの変更でエラーになります。
         private void radioButtonChecked(object sender, RoutedEventArgs e)
         {
-//            SizeChange();
+            SizeChange();
         }
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        // サイズ変更
+        private void SizeChange()
         {
-            var dialog = new MessageDialog("Hellow");
-            await dialog.ShowAsync();
+            if (radioButtonSingle.IsChecked == true)
+            {
+                textBlockBinExponent.Text = "Exponent (8bits)";
+                textBlockBinFraction.Text = "Fraction (23bits)";
+            }
+            else
+            {
+                textBlockBinExponent.Text = "Exponent (11bits)";
+                textBlockBinFraction.Text = "Fraction (52bits)";
+            }
+            //TryDecimalParse(true);
+        }
+        // Enterによるサイズ切替
+        private void radioButton_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+            {
+                RadioButton radioButton = sender as RadioButton;
+                if ((radioButton == radioButtonSingle) && (radioButtonSingle.IsChecked == true)) return;
+                if ((radioButton == radioButtonDouble) && (radioButtonDouble.IsChecked == true)) return;
+                radioButton.IsChecked = true;
+                SizeChange();
+            }
         }
     }
 }

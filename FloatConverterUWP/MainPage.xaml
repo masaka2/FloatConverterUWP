@@ -16,6 +16,7 @@
         </Style>
         <Style x:Key="TextBlockLabelStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Green" />
+            <Setter Property="Margin" Value="5,0,0,0" />
         </Style>
         <Style x:Key="TextBoxInputStyle" TargetType="TextBox">
             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -30,6 +31,8 @@
             <Setter Property="IsTabStop" Value="False" />
         </Style>
         <Style x:Key="TextBlockLabelBinaryStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Foreground" Value="Green" />
         </Style>
         <Style x:Key="TextBoxBinaryStyle" TargetType="TextBox">
@@ -58,8 +61,8 @@
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <RadioButton Name="radioButtonSingle" Content="Single (binary32)" Checked="radioButtonChecked"/>
-            <RadioButton Name="radioButtonDouble" Content="Double (binary64)" Checked="radioButtonChecked"/>
+            <RadioButton Name="radioButtonSingle" Content="Single (binary32)" Checked="radioButtonChecked" KeyDown="radioButton_KeyDown"/>
+            <RadioButton Name="radioButtonDouble" Content="Double (binary64)" Checked="radioButtonChecked" KeyDown="radioButton_KeyDown"/>
         </StackPanel>
         <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" Style="{StaticResource BorderStyle}">
             <Grid>
@@ -105,8 +108,8 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Binary" Style="{StaticResource TextBlockLabelStyle}" />
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Sign" Style="{StaticResource TextBlockLabelBinaryStyle}" />
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Exponent (8bits)" Style="{StaticResource TextBlockLabelBinaryStyle}" />
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="Fraction (23bits)" Style="{StaticResource TextBlockLabelBinaryStyle}" />
+                <TextBlock Grid.Row="2" Grid.Column="0" Name="textBlockBinExponent" Style="{StaticResource TextBlockLabelBinaryStyle}" />
+                <TextBlock Grid.Row="3" Grid.Column="0" Name="textBlockBinFraction" Style="{StaticResource TextBlockLabelBinaryStyle}" />
                 <TextBox Grid.Row="1" Grid.Column="1" Name="textBoxBinSign" Style="{StaticResource TextBoxBinaryStyle}"/>
                 <TextBox Grid.Row="2" Grid.Column="1" Name="textBoxBinExponent" Style="{StaticResource TextBoxBinaryStyle}"/>
                 <TextBox Grid.Row="3" Grid.Column="1" Name="textBoxBinFraction" Style="{StaticResource TextBoxBinaryStyle}"/>
