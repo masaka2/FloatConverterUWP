@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
     <Page.Resources>
         <Style x:Key="BorderStyle" TargetType="Border">
             <Setter Property="BorderBrush" Value="LightGreen" />
@@ -76,7 +76,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Decimal" Style="{StaticResource TextBlockLabelStyle}" />
                 <TextBox Grid.Row="0" Grid.Column="1" Name="textBoxMsgDecimal" Style="{StaticResource TextBoxMsgStyle}" />
-                <TextBox Grid.Row="1" Grid.Column="1" Name="textBoxDecimal" Style="{StaticResource TextBoxInputStyle}" />
+                <TextBox Grid.Row="1" Grid.Column="1" Name="textBoxDecimal" Style="{StaticResource TextBoxInputStyle}" KeyDown="textBoxDecimal_KeyDown" />
             </Grid>
         </Border>
         <Border Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="1" Style="{StaticResource BorderStyle}">
@@ -91,7 +91,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Hexadecimal" Style="{StaticResource TextBlockLabelStyle}" />
                 <TextBox Grid.Row="0" Grid.Column="1" Name="textBoxMsgHexadecimal" Style="{StaticResource TextBoxMsgStyle}" />
-                <TextBox Grid.Row="1" Grid.Column="1" Name="textBoxHexadecimal" Style="{StaticResource TextBoxInputStyle}" />
+                <TextBox Grid.Row="1" Grid.Column="1" Name="textBoxHexadecimal" Style="{StaticResource TextBoxInputStyle}" KeyDown="textBoxHexadecimal_KeyDown" />
             </Grid>
         </Border>
         <Border Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="1" Style="{StaticResource BorderStyle}">
