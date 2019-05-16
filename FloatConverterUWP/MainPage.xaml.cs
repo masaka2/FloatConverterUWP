@@ -67,7 +67,7 @@ namespace FloatConverterUWP
                 textBlockBinExponent.Text = "Exponent (11bits)";
                 textBlockBinFraction.Text = "Fraction (52bits)";
             }
-            //TryDecimalParse(true);
+            TryDecimalParse(true);
         }
         // Enterによるサイズ切替
         private void radioButton_KeyDown(object sender, KeyRoutedEventArgs e)
