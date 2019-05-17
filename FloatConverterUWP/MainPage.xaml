@@ -6,7 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Loaded="Page_Loaded">
     <Page.Resources>
         <Style x:Key="BorderStyle" TargetType="Border">
             <Setter Property="BorderBrush" Value="LightGreen" />
@@ -17,10 +18,10 @@
         <Style x:Key="TextBlockLabelStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Green" />
             <Setter Property="Margin" Value="5,0,0,0" />
+            <Setter Property="FontSize" Value="20" />
         </Style>
         <Style x:Key="TextBoxInputStyle" TargetType="TextBox">
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Bottom" />
             <Setter Property="BorderThickness" Value="0" />
         </Style>
         <Style x:Key="TextBoxMsgStyle" TargetType="TextBox">
@@ -32,12 +33,9 @@
         </Style>
         <Style x:Key="TextBlockLabelBinaryStyle" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Foreground" Value="Green" />
         </Style>
         <Style x:Key="TextBoxBinaryStyle" TargetType="TextBox">
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="IsReadOnly" Value="True" />
             <Setter Property="IsTabStop" Value="False" />
@@ -75,8 +73,8 @@
                     <ColumnDefinition Width="70*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Decimal" Style="{StaticResource TextBlockLabelStyle}" />
-                <TextBox Grid.Row="1" Grid.Column="1" Name="textBoxMsgDecimal" Style="{StaticResource TextBoxMsgStyle}" />
                 <TextBox Grid.Row="0" Grid.Column="1" Name="textBoxDecimal" Style="{StaticResource TextBoxInputStyle}" KeyDown="textBoxDecimal_KeyDown" />
+                <TextBox Grid.Row="1" Grid.Column="1" Name="textBoxMsgDecimal" Style="{StaticResource TextBoxMsgStyle}" />
             </Grid>
         </Border>
         <Border Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="1" Style="{StaticResource BorderStyle}">
@@ -90,8 +88,8 @@
                     <ColumnDefinition Width="70*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Hexadecimal" Style="{StaticResource TextBlockLabelStyle}" />
-                <TextBox Grid.Row="0" Grid.Column="1" Name="textBoxMsgHexadecimal" Style="{StaticResource TextBoxMsgStyle}" />
-                <TextBox Grid.Row="1" Grid.Column="1" Name="textBoxHexadecimal" Style="{StaticResource TextBoxInputStyle}" KeyDown="textBoxHexadecimal_KeyDown" />
+                <TextBox Grid.Row="0" Grid.Column="1" Name="textBoxHexadecimal" Style="{StaticResource TextBoxInputStyle}" KeyDown="textBoxHexadecimal_KeyDown" />
+                <TextBox Grid.Row="1" Grid.Column="1" Name="textBoxMsgHexadecimal" Style="{StaticResource TextBoxMsgStyle}" />
             </Grid>
         </Border>
         <Border Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="1" Style="{StaticResource BorderStyle}">

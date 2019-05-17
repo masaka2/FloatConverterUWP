@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+// 2019/05/16 完成
 // 空白ページの項目テンプレートについては、https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x411 を参照してください
 
 namespace FloatConverterUWP
@@ -33,22 +33,28 @@ namespace FloatConverterUWP
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             radioButtonSingle.IsChecked = true;
-            //textBoxDecimal.Focus(FocusState.Pointer);
             textBoxDecimal.Focus(FocusState.Keyboard);
         }
         // メッセージ表示
-        private void DispMsg(string msg)
+        private void DispMsg(TextBox textBoxMsg, string msg)
         {
-//            textBoxMsg.Foreground = Brushes.Black;
-//            textBoxMsg.Text = msg;
+            textBoxMsg.Foreground = new SolidColorBrush(Colors.Black);
+            textBoxMsg.Text = msg;
         }
         // エラーメッセージ表示
-        private void ErrMsg(string msg)
+        private void ErrMsg(TextBox textBoxMsg, string msg)
         {
-//            textBoxMsg.Foreground = Brushes.Red;
-//            textBoxMsg.Text = msg;
+            textBoxMsg.Foreground = new SolidColorBrush(Colors.Red);
+            textBoxMsg.Text = msg;
         }
-
+        // メッセージ消去
+        private void ClearMsg()
+        {
+            textBoxDecimal.Foreground = new SolidColorBrush(Colors.Black);
+            textBoxHexadecimal.Foreground = new SolidColorBrush(Colors.Black);
+            DispMsg(textBoxMsgDecimal, "");
+            DispMsg(textBoxMsgHexadecimal, "");
+        }
         // ラジオボタンクリック（サイズ変更）
         private void radioButtonChecked(object sender, RoutedEventArgs e)
         {
@@ -69,14 +75,15 @@ namespace FloatConverterUWP
             }
             TryDecimalParse(true);
         }
-        // Enterによるサイズ切替
+        // サイズ切替ボタン押下
         private void radioButton_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            if (e.Key == VirtualKey.Enter)
+            // Enterは２回来る！
+            if ((e.Key == VirtualKey.Enter) && (e.KeyStatus.RepeatCount == 1))
             {
+                ClearMsg();
                 RadioButton radioButton = sender as RadioButton;
-                if ((radioButton == radioButtonSingle) && (radioButtonSingle.IsChecked == true)) return;
-                if ((radioButton == radioButtonDouble) && (radioButtonDouble.IsChecked == true)) return;
+                if (radioButton.IsChecked == true) return;
                 radioButton.IsChecked = true;
                 SizeChange();
             }
@@ -112,7 +119,7 @@ namespace FloatConverterUWP
             }
             if (bSizeChange && (textBoxDecimal.Text.Length == 0)) return (true);
             textBoxDecimal.Foreground = new SolidColorBrush(Colors.Red);
-            ErrMsg((textBoxDecimal.Text.Length == 0) ? "未入力です。" : "浮動小数点数として誤りがあります。");
+            ErrMsg(textBoxMsgDecimal, (textBoxDecimal.Text.Length == 0) ? "未入力です。" : "浮動小数点数として誤りがあります。");
             return (false);
         }
         // １６進数解析（再表示）
@@ -121,17 +128,17 @@ namespace FloatConverterUWP
             string str = textBoxHexadecimal.Text.Replace(" ", "");
             if (str.Length < 1)
             {
-                ErrMsg("未入力です。");
+                ErrMsg(textBoxMsgHexadecimal, "未入力です。");
                 return (false);
             }
             if ((radioButtonSingle.IsChecked == true) && (str.Length > 8))
             {
-                ErrMsg("８桁以内で入力してください。");
+                ErrMsg(textBoxMsgHexadecimal, "８桁以内で入力してください。");
                 return (false);
             }
             if (str.Length > 16)
             {
-                ErrMsg("１６桁以内で入力してください。");
+                ErrMsg(textBoxMsgHexadecimal, "１６桁以内で入力してください。");
                 return (false);
             }
             if (radioButtonSingle.IsChecked == true)
@@ -180,9 +187,10 @@ namespace FloatConverterUWP
             textBoxBinExponent.Text = strBin.Substring(1, 11);
             textBoxBinFraction.Text = strBin.Substring(12);
         }
-        // 
+        // １０進数欄キー入力
         private void textBoxDecimal_KeyDown(object sender, KeyRoutedEventArgs e)
         {
+            ClearMsg();
             // Enterは２回来る！
             if ((e.Key == VirtualKey.Enter) && (e.KeyStatus.RepeatCount == 1))
             {
@@ -197,9 +205,10 @@ namespace FloatConverterUWP
                 }
             }
         }
-
+        // １６進数欄キー入力
         private void textBoxHexadecimal_KeyDown(object sender, KeyRoutedEventArgs e)
         {
+            ClearMsg();
             // Enterは２回来る！
             if (e.Key == VirtualKey.Enter)
             {
@@ -227,6 +236,5 @@ namespace FloatConverterUWP
             if (e.Key == VirtualKey.Tab) return;
             e.Handled = true;  // １６進数とタブ以外は無視！
         }
-
     }
 }
