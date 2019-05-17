@@ -32,7 +32,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="FloatConverterUWP.App">
       <uap:VisualElements
-        DisplayName="FloatConverterUWP"
+        DisplayName="Float（IEEE754） Converter"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="FloatConverterUWP"
