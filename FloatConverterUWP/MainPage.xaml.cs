@@ -18,7 +18,6 @@ namespace FloatConverterUWP
         public MainPage()
         {
             this.InitializeComponent();
-
         }
         // 画面初期化
         private void Page_Loaded(object sender, RoutedEventArgs e)
