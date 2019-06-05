@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="ad8abe32-a7e5-4a54-ba3a-2a432beaf496"
-    Publisher="CN=正勝"
+    Name="408036785383F.FloatConverterUWP"
+    Publisher="CN=33244CBB-9791-4BBE-8521-8FB7BD63B221"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="ad8abe32-a7e5-4a54-ba3a-2a432beaf496" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="dc400782-4e01-4cdb-bfa5-4f6ffcb42e76" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>FloatConverterUWP</DisplayName>
-    <PublisherDisplayName>正勝</PublisherDisplayName>
+    <PublisherDisplayName>渡辺正勝</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -32,17 +32,22 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="FloatConverterUWP.App">
       <uap:VisualElements
-        DisplayName="Float（IEEE754） Converter"
+        DisplayName="Float（IEEE754）Converter"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="FloatConverterUWP"
+        Description="浮動小数点数変換ツール（１０進数形式と１６進数形式の相互変換／２進数表示／32ビットと64ビット形式に対応）"
         BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
+        <uap:SplashScreen Image="Assets\SplashScreen.png"/>
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape"/>
+          <uap:Rotation Preference="portrait"/>
+          <uap:Rotation Preference="landscapeFlipped"/>
+          <uap:Rotation Preference="portraitFlipped"/></uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>
 
   <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
+    <Capability Name="internetClient"/></Capabilities>
 </Package>
